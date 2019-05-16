@@ -1,16 +1,16 @@
-package ru.job4j.calculate;
 /**
 * Calculate.
 *
 * author: Dmitry Kolganov (dmk78@inbox.ru)
 */
 
+package ru.job4j.calculate;
 
 public class Calculate {
 
 	/**
 	* main
-	* @param. args - args.
+	* @param args - args.
 	*/
 
     public static void main(String[] args) {
