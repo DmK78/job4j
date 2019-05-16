@@ -11,8 +11,9 @@ public class Calculator {
     /**
      * add - adding a and b.
      *
-     * @param first - first double.
+     * @param first  - first double.
      * @param second - second double.
+     * @return first + second.
      */
     public double add(double first, double second) {
         return first + second;
@@ -21,8 +22,9 @@ public class Calculator {
     /**
      * subtract - a subtract b.
      *
-     * @param first - first double.
+     * @param first  - first double.
      * @param second - second double.
+     * @return first - second.
      */
     public double subtract(double first, double second) {
         return first - second;
@@ -31,8 +33,9 @@ public class Calculator {
     /**
      * div - a divide by b.
      *
-     * @param first - first double.
+     * @param first  - first double.
      * @param second - second double.
+     * @return first / second.
      */
     public double div(double first, double second) {
         return first / second;
@@ -41,8 +44,9 @@ public class Calculator {
     /**
      * multiple - multiple a and b.
      *
-     * @param first - first double.
+     * @param first  - first double.
      * @param second - second double.
+     * @return first / second.
      */
     public double multiple(double first, double second) {
         return first * second;
