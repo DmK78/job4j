@@ -1,4 +1,4 @@
-package ru.jobs4j.calculator;
+package ru.job4j.calculator;
 
 /**
  * Calculator.
