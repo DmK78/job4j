@@ -20,4 +20,14 @@ public class BoardTest {
                 )
         );
     }
+    @Test
+    public void when7x7() {
+        Board board = new Board();
+        String rsl = board.paint(7, 7);
+        String ln = System.lineSeparator();
+        assertThat(rsl, is(
+                String.format("X X X X%s X X X %sX X X X%s X X X %sX X X X%s X X X %sX X X X%s", ln, ln, ln, ln, ln, ln, ln)
+                )
+        );
+    }
 }
