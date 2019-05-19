@@ -8,6 +8,7 @@ package ru.job4j.array;
 
 /**
  * Проверяет массив на однородность элементов.
+ * 6.3. Массив заполнен true или false[#141713]
  */
 public class Check {
     public boolean mono(boolean[] data) {
