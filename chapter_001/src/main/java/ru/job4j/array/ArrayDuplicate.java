@@ -21,11 +21,9 @@ public class ArrayDuplicate {
             for (int j = i + 1; j < array.length - countOfDuplicates; j++) {
                 if (array[i].equals(array[j])) {
                     countOfDuplicates++;
-                    temp = array[j];
-                    for (int p = j; p < array.length - 1; p++) {
-                        array[p] = array[p + 1];
-                    }
-                    array[array.length - 1] = temp;
+                    //temp = array[j];
+                    array[j] = array[array.length - 1 - countOfDuplicates];
+                    array[array.length - 1] = null;
                 }
             }
         }
