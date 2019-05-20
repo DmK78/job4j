@@ -16,10 +16,12 @@ public class MatrixCheck {
         boolean result = true;
         for (int i = 0; i < data.length - 1; i++) {
             if (data[i][i] != data[i + 1][i + 1]) {
-                return false;
+                result = false;
+                break;
             }
             if (data[data.length - i - 1][i] != data[data.length - i - 2][i + 1]) {
-                return false;
+                result = false;
+                break;
             }
         }
         return result;
