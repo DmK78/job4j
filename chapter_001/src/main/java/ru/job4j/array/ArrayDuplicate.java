@@ -20,13 +20,12 @@ public class ArrayDuplicate {
         for (int i = 0; i < array.length - 1 - countOfDuplicates; i++) {
             for (int j = i + 1; j < array.length - countOfDuplicates; j++) {
                 if (array[i].equals(array[j])) {
-                    countOfDuplicates++;
-                    //temp = array[j];
                     array[j] = array[array.length - 1 - countOfDuplicates];
-                    array[array.length - 1] = null;
+                    countOfDuplicates++;
                 }
             }
         }
         return Arrays.copyOf(array, array.length - countOfDuplicates);
     }
 }
+
