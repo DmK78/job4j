@@ -22,10 +22,12 @@ public class ArrayDuplicate {
                 if (array[i].equals(array[j])) {
                     array[j] = array[array.length - 1 - countOfDuplicates];
                     countOfDuplicates++;
+                    j--;
                 }
             }
         }
         return Arrays.copyOf(array, array.length - countOfDuplicates);
     }
 }
+
 
