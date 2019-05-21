@@ -57,9 +57,6 @@ public class Triangle {
      * @return есть треугольник или нет
      */
     private boolean exist(double a, double c, double b) {
-        if (a + c > b && a + b > c && b + c > a) {
-            return true;
-        }
-        return false;
+        return a + c > b && a + b > c && b + c > a;
     }
 }

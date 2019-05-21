@@ -1,9 +1,4 @@
 package ru.job4j.array;
-/**
- * @author Dmitry Kolganov (dmk78@inbox.ru)
- * @version $Id$
- * @since 0.1
- */
 
 
 import java.util.Arrays;
