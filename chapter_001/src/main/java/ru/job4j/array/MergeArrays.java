@@ -10,21 +10,27 @@ public class MergeArrays {
 
     public int[] merge(int[] a, int[] b) {
         int[] resultArr = new int[a.length + b.length];
-        int countResult = 0;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] <= b[i]) {
-                resultArr[countResult] = a[i];
-                countResult++;
-                resultArr[countResult] = b[i];
-            } else {
-                resultArr[countResult] = b[i];
-                countResult++;
-                resultArr[countResult] = a[i];
+        int countA = 0;
+        int countB = 0;
+        for (int i = 0; i < resultArr.length; i++) {
+            if (countA < a.length && countB < b.length) {
+                if (a[countA] < b[countB]) {
+                    resultArr[i] = a[countA];
+                    countA++;
+                } else {
+                    resultArr[i] = b[countB];
+                    countB++;
+                }
+            } else if (countA < a.length) {
+                resultArr[i] = a[countA];
+                countA++;
+            } else if (countB < b.length) {
+                resultArr[i] = b[countB];
+                countB++;
             }
-            countResult++;
         }
         return resultArr;
-
     }
+
 
 }
