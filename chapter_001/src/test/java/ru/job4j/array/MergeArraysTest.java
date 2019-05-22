@@ -45,4 +45,6 @@ public class MergeArraysTest {
         int[] check = {2, 3, 4, 5, 6, 7};
         assertThat(result, is(check));
     }
+
+
 }
