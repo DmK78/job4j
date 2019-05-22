@@ -8,11 +8,7 @@ import java.util.Arrays;
  */
 
 public class ArrayDuplicate {
-    /**
-     *
-     * @param array
-     * @return
-     */
+
     public String[] remove(String[] array) {
         int countOfDuplicates = 0;
         String temp;
