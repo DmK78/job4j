@@ -6,8 +6,6 @@ package ru.job4j.calculator;
  * author: Dmitry Kolganov (dmk78@inbox.ru)
  */
 public class Calculator {
-
-
     /**
      * add - adding a and b.
      *
@@ -18,7 +16,6 @@ public class Calculator {
     public double add(double first, double second) {
         return first + second;
     }
-
     /**
      * subtract - a subtract b.
      *
@@ -29,7 +26,6 @@ public class Calculator {
     public double subtract(double first, double second) {
         return first - second;
     }
-
     /**
      * div - a divide by b.
      *
@@ -40,7 +36,6 @@ public class Calculator {
     public double div(double first, double second) {
         return first / second;
     }
-
     /**
      * multiple - multiple a and b.
      *
@@ -51,5 +46,4 @@ public class Calculator {
     public double multiple(double first, double second) {
         return first * second;
     }
-
 }

@@ -18,8 +18,6 @@ public class Matrix {
                 table[i][j] = (i + 1) * (j + 1);
             }
         }
-
-
         return table;
     }
 }

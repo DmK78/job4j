@@ -12,7 +12,5 @@ public class MultiMax {
         result = (first > second ? first : second);
         result = result > third ? result : third;
        return result;
-
-
     }
 }
