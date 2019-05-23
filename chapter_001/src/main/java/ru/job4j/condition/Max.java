@@ -9,10 +9,19 @@ public class Max {
     /**
      * Возвращает большее значение
      *
-     * @param left, right - два числа.
+     * @param first, right - два числа.
      * @return Большее число.
      */
-    public int max(int left, int right) {
-        return right > left ? right : left;
+    public int max(int first, int second) {
+        return second > first ? second : first;
     }
+
+    public int max(int first, int second, int third) {
+        return max(first, max(second, third));
+    }
+
+    public int max(int first, int second, int third, int fourth) {
+        return max(max(first, second), max(third, fourth));
+    }
+
 }

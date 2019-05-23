@@ -16,6 +16,11 @@ public class Calculator {
     public double add(double first, double second) {
         return first + second;
     }
+
+    public double add(double first, double second, double third) {
+        return add(first, add(second, third));
+    }
+
     /**
      * subtract - a subtract b.
      *
@@ -26,6 +31,7 @@ public class Calculator {
     public double subtract(double first, double second) {
         return first - second;
     }
+
     /**
      * div - a divide by b.
      *
@@ -36,6 +42,7 @@ public class Calculator {
     public double div(double first, double second) {
         return first / second;
     }
+
     /**
      * multiple - multiple a and b.
      *
