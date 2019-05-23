@@ -35,9 +35,12 @@ public class Triangle {
      */
     public double area(int x1, int y1, int x2, int y2, int x3, int y3) {
         double rsl = -1;
-        double a = new Point().distance(x1, y1, x2, y2);
-        double b = new Point().distance(x2, y2, x3, y3);
-        double c = new Point().distance(x1, y1, x3, y3);
+        Point pointA = new Point(x1, y1);
+        Point pointB = new Point(x2, y2);
+        Point pointC = new Point(x3, y3);
+        double a = pointA.distance(pointB);
+        double b = pointB.distance(pointC);
+        double c = pointA.distance(pointC);
         double p = period(a, b, c);
         if (this.exist(a, b, c)) {
             rsl = Math.sqrt(p * (p - a) * (p - b) * (p - c));

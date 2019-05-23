@@ -5,15 +5,25 @@ package ru.job4j.condition;
  */
 
 public class Point {
+    private int x;
+    private int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
      * рассчет расстояния.
      *
-     * @param x1,x2,y1,y2 Coord.
+     * @param  that.
      * @return dist.
      */
-    public double distance(int x1, int y1, int x2, int y2) {
-        double first = Math.pow(x2 - x1, 2);
-        double second = Math.pow(y2 - y1, 2);
-        return Math.sqrt(first + second);
+    public double distance(Point that) {
+        return Math.sqrt(Math.pow(that.x - this.x, 2) + Math.pow(that.y - this.y, 2));
+    }
+
+    public void info() {
+        System.out.println(String.format("Point[%s,%s]", this.x, this.y));
     }
 }
