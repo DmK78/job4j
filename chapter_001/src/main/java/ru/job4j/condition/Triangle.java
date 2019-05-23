@@ -6,6 +6,16 @@ package ru.job4j.condition;
  * @since 0.1
  */
 public class Triangle {
+    private Point first;
+    private Point second;
+    private Point third;
+
+    public Triangle(Point first, Point second, Point third) {
+        this.first = first;
+        this.second = second;
+        this.third = third;
+    }
+
     /**
      * Метод вычисления периметра по длинам сторон.
      * <p>
@@ -33,14 +43,11 @@ public class Triangle {
      *
      * @return Вернуть площадь, если треугольник существует или -1.
      */
-    public double area(int x1, int y1, int x2, int y2, int x3, int y3) {
+    public double area() {
         double rsl = -1;
-        Point pointA = new Point(x1, y1);
-        Point pointB = new Point(x2, y2);
-        Point pointC = new Point(x3, y3);
-        double a = pointA.distance(pointB);
-        double b = pointB.distance(pointC);
-        double c = pointA.distance(pointC);
+        double a = first.distance(second);
+        double b = second.distance(third);
+        double c = first.distance(third);
         double p = period(a, b, c);
         if (this.exist(a, b, c)) {
             rsl = Math.sqrt(p * (p - a) * (p - b) * (p - c));
