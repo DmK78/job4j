@@ -20,4 +20,17 @@ public class PointTest {
         Point b = new Point(2, 2);
         b.info();
     }
+    @Test
+    public void whenDistance3D(){
+        Point point = new Point(1, 1,1);
+        double result = point.distance3d(new Point(5, 1,1));
+        assertThat(result, is(4D));
+    }
+
+    @Test
+    public void whenDistance3DWithDecimals(){
+        Point point = new Point(3, 1,5);
+        double result = point.distance3d(new Point(5, 3,1));
+        assertThat(result, is(4.898979485566356D));
+    }
 }
