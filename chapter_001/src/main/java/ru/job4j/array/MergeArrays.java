@@ -31,4 +31,5 @@ public class MergeArrays {
         }
         return resultArr;
     }
+
 }
