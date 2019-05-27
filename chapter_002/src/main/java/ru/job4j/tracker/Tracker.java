@@ -92,7 +92,7 @@ public class Tracker {
     private String generateId() {
         //String result = System.currentTimeMillis() + String.valueOf(Math.random() * 100);
         // изменил генерацию проще поиск делать
-        String result = String.valueOf((int)(Math.random()*1000));
+        String result = String.valueOf((int) (Math.random() * 1000));
         return result;
     }
 }

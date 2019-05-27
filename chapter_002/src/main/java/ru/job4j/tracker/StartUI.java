@@ -5,32 +5,26 @@ public class StartUI {
      * Константа меню для добавления новой заявки.
      */
     private static final String ADD = "0";
-
     /**
      * Константа меню для показа всех заявок.
      */
     private static final String ALL = "1";
-
     /**
      * Константа меню для редактирования заявки.
      */
     private static final String EDT = "2";
-
     /**
      * Константа меню для удаления заявки.
      */
     private static final String DEL = "3";
-
     /**
      * Константа меню для нахождения заявки по ИД заявки.
      */
     private static final String FBI = "4";
-
     /**
      * Константа меню для нахождения заявки по имени заявки.
      */
     private static final String FBN = "5";
-
     /**
      * Константа для выхода из цикла.
      */
@@ -39,7 +33,6 @@ public class StartUI {
      * Получение данных от пользователя.
      */
     private final Input input;
-
     /**
      * Хранилище заявок.
      */
@@ -67,7 +60,6 @@ public class StartUI {
             if (ADD.equals(answer)) {
                 //добавление заявки вынесено в отдельный метод.
                 this.createItem();
-
             } else if (ALL.equals(answer)) {
                 this.findAll();
             } else if (EDT.equals(answer)) {
@@ -83,7 +75,6 @@ public class StartUI {
             }
         }
     }
-
 
     /**
      * Метод реализует добавленяи новый заявки в хранилище.
@@ -125,7 +116,6 @@ public class StartUI {
         Item[] items = tracker.findAll();
         for (Item item : items) {
             System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
-
         }
     }
 
@@ -133,14 +123,21 @@ public class StartUI {
      * Метод реализует редактирование заявки.
      */
     private void editItem() {
-        tracker.findAll();
+        this.findAll();
         String id = input.ask("Укажите ИД заявки для изменения:");
         Item item = tracker.findById(id);
-        String name = input.ask("Введите новое имя заявки ");
-        String desc = input.ask("Введите новое описание заявки ");
-        item.setName(name);
-        item.setDesc(desc);
-        tracker.replace(id, item);
+        if (item != null) {
+            String name = input.ask("Введите новое имя заявки ");
+            String desc = input.ask("Введите новое описание заявки ");
+            item.setName(name);
+            item.setDesc(desc);
+            if (tracker.replace(id, item)) {
+                System.out.println("ОК");
+            }
+        } else {
+            System.out.println("Заявка с таким ИД не найдена");
+        }
+
     }
 
     /**
@@ -150,7 +147,13 @@ public class StartUI {
         this.findAll();
         String id = input.ask("Укажите ИД заявки для удаления");
         Item item = tracker.findById(id);
-        tracker.delete(item);
+        if (item != null) {
+            if (tracker.delete(item)) {
+                System.out.println("ОК");
+            }
+        } else {
+            System.out.println("Заявка с таким ИД не найдена");
+        }
     }
 
     /**
@@ -159,8 +162,11 @@ public class StartUI {
     private void findById() {
         String id = input.ask("Введите ИД заявки для поиска");
         Item item = tracker.findById(id);
-        System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
-
+        if (item != null) {
+            System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
+        } else {
+            System.out.println("Заявка в таким ИД не найдена");
+        }
     }
 
     /**
