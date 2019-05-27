@@ -13,6 +13,7 @@ public class Tracker {
 
     public Item add(Item item) {
         item.setId(this.generateId());
+        item.setTime(System.currentTimeMillis());
         this.items[this.position++] = item;
         return item;
     }
@@ -89,7 +90,9 @@ public class Tracker {
     }
 
     private String generateId() {
-        String result = System.currentTimeMillis() + String.valueOf(Math.random() * 100);
+        //String result = System.currentTimeMillis() + String.valueOf(Math.random() * 100);
+        // изменил генерацию проще поиск делать
+        String result = String.valueOf((int)(Math.random()*1000));
         return result;
     }
 }
