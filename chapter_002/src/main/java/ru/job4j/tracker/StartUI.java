@@ -146,11 +146,9 @@ public class StartUI {
     private void deleteItem() {
         this.findAll();
         String id = input.ask("Укажите ИД заявки для удаления");
-        Item item = tracker.findById(id);
-        if (item != null) {
-            if (tracker.delete(item)) {
-                System.out.println("ОК");
-            }
+
+        if (tracker.delete(tracker.findById(id))) {
+            System.out.println("ОК");
         } else {
             System.out.println("Заявка с таким ИД не найдена");
         }
