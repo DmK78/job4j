@@ -1,14 +1,25 @@
 package ru.job4j.tracker;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.PrintStream;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class TrackerTest {
+    private final Tracker tracker = new Tracker();
+
+    @Before
+
+
+    @After
+
+
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
         long created = System.currentTimeMillis();
         Item item = new Item("test1", "testDescription", created);
         tracker.add(item);
@@ -18,7 +29,6 @@ public class TrackerTest {
 
     @Test
     public void whenReplaceNameThenReturnNewName() {
-        Tracker tracker = new Tracker();
         Item previous = new Item("test1", "testDescription", 123L);
         // Добавляем заявку в трекер. Теперь в объект проинициализирован id.
         tracker.add(previous);
@@ -34,7 +44,6 @@ public class TrackerTest {
 
     @Test
     public void whenDeleteItemThenReturnNewArray() {
-        Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         Item second = new Item("test2", "testDescription", 223L);
         Item third = new Item("test3", "testDescription", 323L);
@@ -52,7 +61,6 @@ public class TrackerTest {
 
     @Test
     public void whenFindAllItemThenShowThree() {
-        Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         Item second = new Item("test2", "testDescription", 223L);
         Item third = new Item("test3", "testDescription", 323L);
@@ -65,7 +73,6 @@ public class TrackerTest {
 
     @Test
     public void whenFindByNameThenShowTwoItems() {
-        Tracker tracker = new Tracker();
         Item first = new Item("test1", "testDescription", 123L);
         Item second = new Item("test2", "testDescription", 223L);
         Item third = new Item("test1", "testDescription", 323L);
