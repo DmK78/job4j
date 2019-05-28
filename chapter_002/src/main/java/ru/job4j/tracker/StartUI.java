@@ -124,10 +124,15 @@ public class StartUI {
      */
     private void editItem() {
         String id = input.ask("Укажите ИД заявки для изменения:");
-        String name = input.ask("Введите новое имя заявки ");
-        String desc = input.ask("Введите новое описание заявки ");
-        if (tracker.replace(id, new Item(name, desc))) {
-            System.out.println("ОК");
+        Item item = tracker.findById(id);
+        if (item != null) {
+            String name = input.ask("Введите новое имя заявки ");
+            String desc = input.ask("Введите новое описание заявки ");
+            item.setName(name);
+            item.setDesc(desc);
+            if (tracker.replace(id, tracker.findById(id))) {
+                System.out.println("ОК");
+            }
         } else {
             System.out.println("Заявка с таким ИД не найдена");
         }
