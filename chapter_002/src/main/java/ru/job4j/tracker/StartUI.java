@@ -123,17 +123,11 @@ public class StartUI {
      * Метод реализует редактирование заявки.
      */
     private void editItem() {
-        this.findAll();
         String id = input.ask("Укажите ИД заявки для изменения:");
-        Item item = tracker.findById(id);
-        if (item != null) {
-            String name = input.ask("Введите новое имя заявки ");
-            String desc = input.ask("Введите новое описание заявки ");
-            item.setName(name);
-            item.setDesc(desc);
-            if (tracker.replace(id, item)) {
-                System.out.println("ОК");
-            }
+        String name = input.ask("Введите новое имя заявки ");
+        String desc = input.ask("Введите новое описание заявки ");
+        if (tracker.replace(id, new Item(name, desc))) {
+            System.out.println("ОК");
         } else {
             System.out.println("Заявка с таким ИД не найдена");
         }
@@ -144,9 +138,7 @@ public class StartUI {
      * Метод реализует удаление заявки.
      */
     private void deleteItem() {
-        this.findAll();
         String id = input.ask("Укажите ИД заявки для удаления");
-
         if (tracker.delete(tracker.findById(id))) {
             System.out.println("ОК");
         } else {
