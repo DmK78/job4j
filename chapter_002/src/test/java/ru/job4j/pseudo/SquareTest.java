@@ -22,10 +22,10 @@ public class SquareTest {
                 square.draw(),
                 is(
                         new StringBuilder()
-                                .append("++++++\n")
-                                .append("++++++\n")
-                                .append("++++++\n")
-                                .append("++++++\n")
+                                .append("++++++" + System.lineSeparator())
+                                .append("++++++" + System.lineSeparator())
+                                .append("++++++" + System.lineSeparator())
+                                .append("++++++" + System.lineSeparator())
                                 .toString()
                 )
         );
@@ -38,10 +38,10 @@ public class SquareTest {
                 triangle.draw(),
                 is(
                         new StringBuilder()
-                                .append("   +   \n")
-                                .append("  +++  \n")
-                                .append(" +++++ \n")
-                                .append("+++++++\n")
+                                .append("   +   " + System.lineSeparator())
+                                .append("  +++  " + System.lineSeparator())
+                                .append(" +++++ " + System.lineSeparator())
+                                .append("+++++++" + System.lineSeparator())
                                 .toString()
                 )
         );
