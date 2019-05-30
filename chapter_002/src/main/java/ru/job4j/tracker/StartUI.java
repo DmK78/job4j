@@ -55,7 +55,7 @@ public class StartUI {
     public void init() {
         boolean exit = false;
         while (!exit) {
-            this.showMenu();
+            System.out.println(this.showMenu());
             String answer = this.input.ask("Введите пункт меню : ");
             if (ADD.equals(answer)) {
                 //добавление заявки вынесено в отдельный метод.
@@ -88,15 +88,17 @@ public class StartUI {
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
     }
 
-    private void showMenu() {
-        System.out.println("Меню.");
-        System.out.println("0. Add new Item");
-        System.out.println("1. Show all items");
-        System.out.println("2. Edit item");
-        System.out.println("3. Delete item");
-        System.out.println("4. Find item by Id");
-        System.out.println("5. Find items by name");
-        System.out.println("6. Exit Program");
+    public String showMenu() {
+        StringBuilder menu = new StringBuilder()
+                .append("Меню." + System.lineSeparator())
+                .append("0. Add new Item" + System.lineSeparator())
+                .append("1. Show all items" + System.lineSeparator())
+                .append("2. Edit item" + System.lineSeparator())
+                .append("3. Delete item" + System.lineSeparator())
+                .append("4. Find item by Id" + System.lineSeparator())
+                .append("5. Find items by name" + System.lineSeparator())
+                .append("6. Exit Program");
+        return menu.toString();
     }
 
     /**
