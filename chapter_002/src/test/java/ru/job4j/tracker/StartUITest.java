@@ -89,13 +89,14 @@ public class StartUITest {
         Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
         //assertThat(tracker.findById(item.getId()),
-        assertThat(out
-                , is(menu + System.lineSeparator()
-                        + (String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()))
-                        + System.lineSeparator()
-                        + menu
-                        + System.lineSeparator()
-                        + ">"));
+        StringBuilder expected = new StringBuilder()
+                .append(menu)
+                .append(System.lineSeparator())
+                .append(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()))
+                .append(System.lineSeparator())
+                .append(menu)
+                .append(System.lineSeparator());
+        assertThat(out.toString(), is(expected.toString()));
     }
 
     @Test
@@ -108,6 +109,41 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(tracker.findByName(item.getName())[0].getName(), is("test name"));
         assertThat(tracker.findByName(item2.getName())[1].getName(), is("test name"));
+        StringBuilder expected = new StringBuilder()
+                .append(menu)
+                .append(System.lineSeparator())
+                .append(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()))
+                .append(System.lineSeparator())
+                .append(String.format("ID %-6s Name %-30s Description %-30s Time %s", item2.getId(), item2.getName(), item2.getDesc(), item.getTime()))
+                .append(System.lineSeparator())
+                .append(menu)
+                .append(System.lineSeparator());
+        assertThat(out.toString(), is(expected.toString()));
+
+    }
+
+    @Test
+    public void whenFindAll() {
+        Tracker tracker = new Tracker();     // создаём Tracker
+        Item item = tracker.add(new Item("test name", "desc"));
+        Item item1 = tracker.add(new Item("test name1", "desc"));
+        Item item2 = tracker.add(new Item("test name", "desc"));
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUI(input, tracker).init();
+        StringBuilder expected = new StringBuilder()
+                .append(menu)
+                .append(System.lineSeparator())
+                .append("------------ Печать всех заявок --------------")
+                .append(System.lineSeparator())
+                .append(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()))
+                .append(System.lineSeparator())
+                .append(String.format("ID %-6s Name %-30s Description %-30s Time %s", item1.getId(), item1.getName(), item1.getDesc(), item1.getTime()))
+                .append(System.lineSeparator())
+                .append(String.format("ID %-6s Name %-30s Description %-30s Time %s", item2.getId(), item2.getName(), item2.getDesc(), item2.getTime()))
+                .append(System.lineSeparator())
+                .append(menu)
+                .append(System.lineSeparator());
+        assertThat(out.toString(), is(expected.toString()));
 
     }
 }
