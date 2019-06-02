@@ -27,22 +27,34 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void whenInvalidInput() {
+    public void whenStringIsInvalidInput() {
         ValidateInput input = new ValidateInput(
-                new StubInput(new String[]{"try", "5", "0"})
+                new StubInput(new String[]{"try", "0"})
         );
         ArrayList<Integer> ranges = new ArrayList<>();
         ranges.add(0);
-        ranges.add(1);
-        ranges.add(3);
-        ranges.add(3);
         input.ask("Enter", ranges);
         StringBuilder string = new StringBuilder();
         string.append("Please enter numbers...")
-                .append(System.lineSeparator())
-                .append("Please enter number of menu...")
                 .append(System.lineSeparator());
+        assertThat(
+                this.mem.toString(),
+                is(
+                        string.toString())
+        );
+    }
 
+    @Test
+    public void henWrongNumberIsInvalidInput() {
+        ValidateInput input = new ValidateInput(
+                new StubInput(new String[]{"1", "0"})
+        );
+        ArrayList<Integer> ranges = new ArrayList<>();
+        ranges.add(0);
+        input.ask("Enter", ranges);
+        StringBuilder string = new StringBuilder();
+        string.append("Please enter number of menu...")
+                .append(System.lineSeparator());
         assertThat(
                 this.mem.toString(),
                 is(
