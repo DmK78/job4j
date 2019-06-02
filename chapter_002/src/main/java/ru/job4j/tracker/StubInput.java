@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+
 public class StubInput implements Input {
     /**
      * Это поле содержит последовательность ответов пользователя.
@@ -33,5 +35,12 @@ public class StubInput implements Input {
     @Override
     public String ask(String question) {
         return this.value[this.position++];
+    }
+
+    @Override
+    public int ask(String question, ArrayList<Integer> ranges) {
+        //throw new UnsupportedOperationException("Unsupported operation");
+        return Integer.valueOf(this.value[this.position++]);
+
     }
 }
