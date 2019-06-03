@@ -39,8 +39,19 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, ArrayList<Integer> ranges) {
-        //throw new UnsupportedOperationException("Unsupported operation");
-        return Integer.valueOf(this.value[this.position++]);
+        int key = Integer.valueOf(value[position++]);
+        boolean isValid = false;
+        for (Integer value : ranges) {
+            if (key == value) {
+                isValid = true;
+                break;
+            }
+        }
+        if (isValid) {
+            return key;
+        } else {
+            throw new MenuOutException("Enter values from menu");
+        }
 
     }
 }
