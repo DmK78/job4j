@@ -101,18 +101,12 @@ public class MenuTracker {
         }
     }
 
-    public class AddItem implements UserAction {
+    public class AddItem extends BaseAction {
         int key;
         String info;
 
         public AddItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
@@ -124,25 +118,14 @@ public class MenuTracker {
             tracker.add(item);
             System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
         }
-
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    public class ShowItems implements UserAction {
+    public class ShowItems extends BaseAction {
         int key;
         String info;
 
         public ShowItems(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
@@ -153,25 +136,14 @@ public class MenuTracker {
                 System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
             }
         }
-
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    public class UpdateItem implements UserAction {
+    public class UpdateItem extends BaseAction {
         int key;
         String info;
 
         public UpdateItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
@@ -188,27 +160,15 @@ public class MenuTracker {
                 }
             }
             System.out.println("ОК");
-
-        }
-
-        @Override
-        public String info() {
-            return info;
         }
     }
 
-    public class DeleteItem implements UserAction {
+    public class DeleteItem extends BaseAction {
         int key;
         String info;
 
         public DeleteItem(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
@@ -218,27 +178,15 @@ public class MenuTracker {
                 System.out.println("Заявка с таким ИД не найдена");
             }
             System.out.println("ОК");
-
-        }
-
-        @Override
-        public String info() {
-            return info;
         }
     }
 
-    public class FindItemById implements UserAction {
+    public class FindItemById extends BaseAction {
         int key;
         String info;
 
         public FindItemById(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
@@ -251,24 +199,14 @@ public class MenuTracker {
             System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
         }
 
-        @Override
-        public String info() {
-            return info;
-        }
     }
 
-    public class FindItemsByName implements UserAction {
+    public class FindItemsByName extends BaseAction {
         int key;
         String info;
 
         public FindItemsByName(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
@@ -278,36 +216,20 @@ public class MenuTracker {
             for (Item item : items) {
                 System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
             }
-
-        }
-
-        @Override
-        public String info() {
-            return info;
         }
     }
 
-    public class ExitProgram implements UserAction {
+    public class ExitProgram extends BaseAction {
         int key;
         String info;
 
         public ExitProgram(int key, String info) {
-            this.key = key;
-            this.info = info;
-        }
-
-        @Override
-        public int key() {
-            return key;
+            super(key, info);
         }
 
         @Override
         public void execute(Input input, Tracker tracker) {
         }
 
-        @Override
-        public String info() {
-            return info;
-        }
     }
 }

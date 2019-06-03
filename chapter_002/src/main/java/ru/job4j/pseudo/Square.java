@@ -1,4 +1,6 @@
-package ru.job4j.ru.job4j.pseudo;
+package ru.job4j.pseudo;
+
+import ru.job4j.pseudo.Shape;
 
 public class Square implements Shape {
     @Override

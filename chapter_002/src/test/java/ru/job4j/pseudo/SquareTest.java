@@ -3,9 +3,6 @@ package ru.job4j.pseudo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.job4j.ru.job4j.pseudo.Square;
-import ru.job4j.ru.job4j.pseudo.Triangle;
-import ru.job4j.tracker.Tracker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
