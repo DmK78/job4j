@@ -183,12 +183,11 @@ public class MenuTracker {
                 String desc = input.ask("Введите новое описание заявки ");
                 item.setName(name);
                 item.setDesc(desc);
-                if (tracker.replace(id, tracker.findById(id))) {
-                    System.out.println("ОК");
+                if (!tracker.replace(id, tracker.findById(id))) {
+                    System.out.println("Заявка с таким ИД не найдена");
                 }
-            } else {
-                System.out.println("Заявка с таким ИД не найдена");
             }
+            System.out.println("ОК");
 
         }
 
@@ -215,11 +214,10 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Укажите ИД заявки для удаления");
-            if (tracker.delete(tracker.findById(id))) {
-                System.out.println("ОК");
-            } else {
+            if (!tracker.delete(tracker.findById(id))) {
                 System.out.println("Заявка с таким ИД не найдена");
             }
+            System.out.println("ОК");
 
         }
 
@@ -247,12 +245,10 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Введите ИД заявки для поиска");
             Item item = tracker.findById(id);
-            if (item != null) {
-                System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
-            } else {
+            if (item == null) {
                 System.out.println("Заявка в таким ИД не найдена");
             }
-
+            System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
         }
 
         @Override

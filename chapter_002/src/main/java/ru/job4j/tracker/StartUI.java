@@ -41,19 +41,6 @@ public class StartUI {
         }
     }
 
-    public String showMenu() {
-        StringBuilder menu = new StringBuilder()
-                .append("Меню." + System.lineSeparator())
-                .append("0. Add new Item" + System.lineSeparator())
-                .append("1. Show all items" + System.lineSeparator())
-                .append("2. Edit item" + System.lineSeparator())
-                .append("3. Delete item" + System.lineSeparator())
-                .append("4. Find item by Id" + System.lineSeparator())
-                .append("5. Find items by name" + System.lineSeparator())
-                .append("6. Exit Program");
-        return menu.toString();
-    }
-
     /**
      * Запускт программы.
      *
