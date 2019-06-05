@@ -23,11 +23,6 @@ public class Board {
                 this.figures[index] = this.figures[index].copy(dest);
             }
         }
-
-
-        this.figures[index] = this.figures[index].copy(dest);
-        rst = true;
-
         return rst;
     }
 
