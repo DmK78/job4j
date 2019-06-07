@@ -19,11 +19,22 @@ public class BishopBlack extends Figure {
         this.position = position;
     }
 
+    /**
+     * Возвращает ячейку Cell - текущую позицию
+     * @return
+     */
     @Override
     public Cell position() {
         return this.position;
     }
 
+    /**
+     * Логика движения фигуры
+     * @param source
+     * @param dest
+     * @return
+     * @throws ImposibleMoveException
+     */
     @Override
     public Cell[] way(Cell source, Cell dest) throws ImposibleMoveException {
         if (!isDiagonal(source, dest)) {
@@ -42,6 +53,12 @@ public class BishopBlack extends Figure {
 
     }
 
+    /**
+     * Проверяет, двигается ли фигура по диагонали
+     * @param source
+     * @param dest
+     * @return
+     */
     private boolean isDiagonal(Cell source, Cell dest) {
         boolean result = false;
         if (Math.abs(dest.x - source.x) == Math.abs(dest.y - source.y)) {
@@ -50,6 +67,11 @@ public class BishopBlack extends Figure {
         return result;
     }
 
+    /**
+     * Копирует фигуру в новую ячейку
+     * @param dest
+     * @return
+     */
     @Override
     public Figure copy(Cell dest) {
         return new BishopBlack(dest);

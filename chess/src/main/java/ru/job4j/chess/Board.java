@@ -6,10 +6,23 @@ public class Board {
     Figure[] figures = new Figure[32];
     private int index = 0;
 
+    /**
+     * Добавляет вигуру на доску
+     * @param figure
+     */
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
 
+    /**
+     * осуществляет движение фигуры
+     * @param source
+     * @param dest
+     * @return
+     * @throws ImposibleMoveException
+     * @throws OccupiedWayException
+     * @throws FigureNotFoundException
+     */
     public boolean move(Cell source, Cell dest) throws ImposibleMoveException, OccupiedWayException, FigureNotFoundException {
         boolean rst = false;
         int index = this.findBy(source);
@@ -18,7 +31,7 @@ public class Board {
         }
         Cell[] steps = this.figures[index].way(source, dest);
         if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
-            if(checkWay(steps)) {
+            if (wayIsClean(steps)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
@@ -26,11 +39,16 @@ public class Board {
         return rst;
     }
 
-    public boolean checkWay(Cell[] steps) {
+    /**
+     * проверяет, нет ли фигур на пути
+     * @param steps
+     * @return
+     */
+    public boolean wayIsClean(Cell[] steps) {
         boolean result = true;
-        for (int i = 0; i < figures.length; i++) {
-            for (int j = 0; j < steps.length; j++) {
-                if (figures[i].position().equals(steps[j])) {
+        for (int i=0;i<this.index;i++) {
+            for (Cell step : steps) {
+                if (step.equals(figures[i].position())) {
                     throw new OccupiedWayException("Way is occupied");
                 }
             }
@@ -38,6 +56,9 @@ public class Board {
         return result;
     }
 
+    /**
+     * Зачищает массив фигур
+     */
     public void clean() {
         for (int position = 0; position != this.figures.length; position++) {
             this.figures[position] = null;
