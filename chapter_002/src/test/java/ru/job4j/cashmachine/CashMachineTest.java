@@ -45,14 +45,5 @@ public class CashMachineTest {
         );
     }
 
-    @Test
-    public void me() {
-        CashMachine machine = new CashMachine(new int[]{10, 5, 1});
-        List<List<Integer>> result = machine.exchange(12);
-        assertThat(result, is(
-                asList(
-                        asList(1)
-                )
-        ));
-    }
+
 }
