@@ -7,7 +7,6 @@ package ru.job4j.cashmachine;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,65 +18,48 @@ public class CashMachine {
 
     public CashMachine(final int[] values) {
         this.values = values;
+        Arrays.sort(values);
     }
 
     public List<List<Integer>> exchange(int note) {
         List<List<Integer>> result = new ArrayList<>();
-        int remain = note;
-        for (int currentCoin : values) {
-            List<Integer> currentArr = new ArrayList<>();
-            if (note < currentCoin) {
+        for (int i = values.length - 1; i >= 0; i--) {
+            List<Integer> tmpArr = new ArrayList<>();
+            int count = note / values[i];
+            int remain = note;
+            if (note<values[i]){
                 continue;
             }
-            if (note % currentCoin == 0) {
-                for (int i = 0; i < note / currentCoin; i++) {
-                    currentArr.add(currentCoin);
-                    remain -= currentCoin;
-                }
-                result.add(currentArr);
-                if (note / currentCoin > 1) {
+            if (count != note) {
+                for (int j = count; j > 0; j--) {
+                    for (int o = 1; o <= j; o++) {
+                        tmpArr.add(values[i]);
+                        remain -= values[i];
+                    }
+                    tmpArr.addAll(appendNotes(remain, i - 1));
+                    result.add(tmpArr);
                     remain = note;
-                    currentArr = new ArrayList<>();
-                    currentArr.add(currentCoin);
-                    remain -= currentCoin;
-                    for (int anotherCoin : values) {
-                        while (remain > 0) {
-                            if (anotherCoin < currentCoin && anotherCoin <= remain) {
-                                currentArr.add(anotherCoin);
-                                remain -= anotherCoin;
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-                    currentArr.sort(null);
-                    int sum = 0;
-                    for (int i : currentArr) {
-                        sum += i;
-                    }
-                    if (sum == note) {
-                        result.add(currentArr);
-                    }
+                    tmpArr = new ArrayList<>();
                 }
+            } else {
+                result.add(appendNotes(note, i));
             }
-            while (remain > 0) {
-                if (currentCoin <= remain) {
-                    currentArr.add(currentCoin);
-                    remain -= currentCoin;
 
-                } else {
-                    for (int anotherCoin : values) {
-                        if (anotherCoin < currentCoin && anotherCoin <= remain) {
-                            currentArr.add(anotherCoin);
-                            remain -= anotherCoin;
-                        }
-                    }
-                }
+        }
+
+        return result;
+    }
+
+    public List<Integer> appendNotes(int note, int maxCoin) {
+        List<Integer> result = new ArrayList<>();
+        int remain = note;
+        for (int i = maxCoin; i >= 0; i--) {
+            while (values[i] <= remain) {
+                result.add(values[i]);
+                remain -= values[i];
+
             }
-            if (note % currentCoin != 0) {
-                remain = note;
-                result.add(currentArr);
-            }
+
         }
         return result;
     }
