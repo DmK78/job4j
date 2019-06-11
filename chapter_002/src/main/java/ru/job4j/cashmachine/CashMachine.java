@@ -27,7 +27,7 @@ public class CashMachine {
             List<Integer> tmpArr = new ArrayList<>();
             int count = note / values[i];
             int remain = note;
-            if (note<values[i]){
+            if (note < values[i]) {
                 continue;
             }
             if (count != note) {
