@@ -23,7 +23,7 @@ public class CashMachine {
 
     public List<List<Integer>> exchange(int note) {
         List<List<Integer>> result = new ArrayList<>();
-        for (int i = values.length - 1; i >= 0; i--) {
+         for (int i = values.length - 1; i >= 0; i--) {
             List<Integer> tmpArr = new ArrayList<>();
             int count = note / values[i];
             int remain = note;
