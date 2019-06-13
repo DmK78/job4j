@@ -4,15 +4,13 @@ package ru.job4j.cashmachine;
  * @version $Id$
  * @since 0.1
  */
+
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * TODO: comment
- *
- * @author job4j
- * @since 28.07.2016
+ * Автомат размена купюр
  */
 public class CashMachine {
 
@@ -20,27 +18,47 @@ public class CashMachine {
 
     public CashMachine(final int[] values) {
         this.values = values;
+        Arrays.sort(values);
     }
 
     public List<List<Integer>> exchange(int note) {
-        return this.exchange(note, 0);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int i = values.length - 1; i >= 0; i--) {
+            List<Integer> tmpArr = new ArrayList<>();
+            int count = note / values[i];
+            int remain = note;
+            if (note < values[i]) {
+                continue;
+            }
+            if (count != note) {
+                for (int j = count; j > 0; j--) {
+                    for (int o = 1; o <= j; o++) {
+                        tmpArr.add(values[i]);
+                        remain -= values[i];
+                    }
+                    tmpArr.addAll(appendNotes(remain, i - 1));
+                    result.add(tmpArr);
+                    remain = note;
+                    tmpArr = new ArrayList<>();
+                }
+            } else {
+                result.add(appendNotes(note, i));
+            }
+
+        }
+
+        return result;
     }
 
-    public List<List<Integer>> exchange(int note, int step) {
-        List<List<Integer>> data = new ArrayList<>();
-        for (int index = step; index != this.values.length; index++) {
-            final int value = this.values[index];
-            int rsl = note - this.values[index];
-            if (rsl == 0) {
-                data.add(new ArrayList<>(Collections.singletonList(value)));
-            } else {
-                for (List<Integer> sub : this.exchange(rsl, index)) {
-                    sub.add(value);
-                    data.add(sub);
-                }
+    public List<Integer> appendNotes(int note, int maxCoin) {
+        List<Integer> result = new ArrayList<>();
+        int remain = note;
+        for (int i = maxCoin; i >= 0; i--) {
+            while (values[i] <= remain) {
+                result.add(values[i]);
+                remain -= values[i];
             }
         }
-        return data;
+        return result;
     }
-
 }
