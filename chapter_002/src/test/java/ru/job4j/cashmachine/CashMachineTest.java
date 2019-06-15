@@ -46,19 +46,4 @@ public class CashMachineTest {
         );
     }
 
-    @Test
-    public void changeMy() {
-        CashMachine machine = new CashMachine(new int[]{10, 5, 1});
-        List<List<Integer>> result = machine.exchange(25);
-        assertThat(
-                result, is(
-                        asList(
-                                singletonList(10),
-                                asList(5, 5),
-                                asList(5, 1, 1, 1, 1, 1),
-                                asList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-                        )
-                )
-        );
-    }
 }
