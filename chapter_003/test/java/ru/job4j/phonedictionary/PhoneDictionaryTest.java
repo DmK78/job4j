@@ -1,8 +1,6 @@
 package ru.job4j.phonedictionary;
 
 import org.junit.Test;
-import ru.job5j.phonedictionary.Person;
-import ru.job5j.phonedictionary.PhoneDictionary;
 
 import java.util.List;
 import static org.hamcrest.core.Is.is;
