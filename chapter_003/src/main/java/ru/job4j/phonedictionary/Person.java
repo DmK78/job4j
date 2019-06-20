@@ -1,4 +1,4 @@
-package ru.job5j.phonedictionary;
+package ru.job4j.phonedictionary;
 
 public class Person {
     private String name;

@@ -1,4 +1,4 @@
-package ru.job5j.phonedictionary;
+package ru.job4j.phonedictionary;
 /**
  * @author Dmitry Kolganov (dmk78@inbox.ru)
  * @version $Id$
