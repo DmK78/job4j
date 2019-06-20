@@ -15,20 +15,15 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        int index = -1;
-        Iterator<Task> it = tasks.listIterator();
+        ListIterator<Task> it = tasks.listIterator();
         while (it.hasNext()) {
-            Task cutTask = it.next();
-            if (cutTask.getPriority() > task.getPriority() && tasks.size() != 0) {
-                index = tasks.indexOf(cutTask);
+            Task curTask = it.next();
+            if (curTask.getPriority() > task.getPriority()) {
+                it.set(it.previous());
                 break;
             }
         }
-        if (index != -1) {
-            tasks.add(index, task);
-        } else {
-            tasks.add(task);
-        }
+        it.add(task);
     }
 
     public Task take() {
