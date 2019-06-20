@@ -10,8 +10,7 @@ public class ConvertList2Array {
         int x = 0;
         int y = 0;
         for (int value : list) {
-            array[x][y]=value;
-
+            array[x][y] = value;
 
 
         }

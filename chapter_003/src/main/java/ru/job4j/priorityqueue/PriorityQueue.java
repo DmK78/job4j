@@ -18,7 +18,7 @@ public class PriorityQueue {
         ListIterator<Task> it = tasks.listIterator();
         while (it.hasNext()) {
             if (it.next().getPriority() > task.getPriority()) {
-                it.set(it.previous());
+                it.previous();
                 break;
             }
         }
