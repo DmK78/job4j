@@ -18,11 +18,4 @@ class User implements Comparable {
         return ((User) o).age.compareTo(this.age);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
 }
