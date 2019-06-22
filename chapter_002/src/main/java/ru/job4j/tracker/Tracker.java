@@ -1,10 +1,11 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Tracker {
-    private Item[] items = new Item[100];
+    private ArrayList<Item> items = new ArrayList<>();
     private int position = 0;
 
     public int getPosition() {
@@ -14,7 +15,7 @@ public class Tracker {
     public Item add(Item item) {
         item.setId(this.generateId());
         item.setTime(System.currentTimeMillis());
-        this.items[this.position++] = item;
+        this.items.add(this.position++, item);
         return item;
     }
 
@@ -24,7 +25,7 @@ public class Tracker {
         if (posToDel >= 0) {
             position--;
             result = true;
-            System.arraycopy(items, posToDel + 1, items, posToDel, items.length - posToDel - 1);
+            items.remove(posToDel);
         }
         return result;
     }
@@ -33,14 +34,16 @@ public class Tracker {
         boolean result = false;
         int posToReplace = findItemPos(id);
         if (posToReplace >= 0) {
-            items[posToReplace] = item;
+            items.add(posToReplace, item);
             result = true;
         }
         return result;
     }
 
-    public Item[] findAll() {
-        Item[] result = Arrays.copyOf(items, position);
+    public ArrayList<Item> findAll() {
+        ArrayList<Item> result = new ArrayList<>();
+        //result = items.subList(0, position);
+        result = items;
         return result;
     }
 
@@ -48,19 +51,19 @@ public class Tracker {
      * сначала проверяет, сколько нужно позиций для результирующего массива, а потом зарполняет.
      *
      * @param key
-     * @return Item[]
+     * @return ArrayList<Item>
      */
-    public Item[] findByName(String key) {
+    public ArrayList<Item> findByName(String key) {
         int count = 0;
         for (int i = 0; i < position; i++) {
-            if (items[i].getName().equals(key)) {
+            if (items.get(i).getName().equals(key)) {
                 count++;
             }
         }
-        Item[] result = new Item[count];
+        ArrayList<Item> result = new ArrayList<>();
         for (int i = 0, k = 0; i < position; i++) {
-            if (items[i].getName().equals(key)) {
-                result[k] = items[i];
+            if (items.get(i).getName().equals(key)) {
+                result.add(k, items.get(i));
                 k++;
             }
         }
@@ -70,7 +73,7 @@ public class Tracker {
     public int findItemPos(String id) {
         int findId = -1;
         for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
+            if (items.get(index).getId().equals(id)) {
                 findId = index;
                 break;
             }
@@ -81,8 +84,8 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
-                result = items[index];
+            if (items.get(index).getId().equals(id)) {
+                result = items.get(index);
                 break;
             }
         }
@@ -90,8 +93,6 @@ public class Tracker {
     }
 
     private String generateId() {
-        //String result = System.currentTimeMillis() + String.valueOf(Math.random() * 100);
-        // изменил генерацию проще поиск делать
         String result = String.valueOf((int) (Math.random() * 1000));
         return result;
     }
