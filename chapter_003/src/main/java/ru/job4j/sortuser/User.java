@@ -13,9 +13,8 @@ class User implements Comparable {
         return age;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        return ((User) o).age.compareTo(this.age);
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -25,4 +24,10 @@ class User implements Comparable {
                 ", age=" + age +
                 '}';
     }
+
+    @Override
+    public int compareTo(Object o) {
+        return ((User) o).age.compareTo(this.age);
+    }
+
 }

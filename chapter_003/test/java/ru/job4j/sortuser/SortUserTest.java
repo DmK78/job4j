@@ -23,4 +23,21 @@ public class SortUserTest {
         expect.add(users.get(1));
         assertThat(result.toString(), is(expect.toString()));
     }
+
+    @Test
+    public void whenSortUsersByNameLength() {
+        SortUser sortUser = new SortUser();
+        List<User> users = new ArrayList<>();
+        users.add(new User("Dmitry",41));
+        users.add(new User("Petro",30));
+        users.add(new User("Ivan",34));
+        users.add(new User("Petro",30));
+        List<User> result = sortUser.sortNameLength(users);
+        List<User> expect = new ArrayList<>();
+        expect.add(new User("Ivan",34));
+        expect.add(new User("Petro",30));
+        expect.add(new User("Petro",30));
+        expect.add(new User("Dmitry",41));
+        assertThat(result.toString(), is(expect.toString()));
+    }
 }
