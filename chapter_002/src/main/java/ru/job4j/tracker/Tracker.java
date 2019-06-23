@@ -19,10 +19,11 @@ public class Tracker {
 
     public boolean delete(Item item) {
         boolean result = false;
-        if (findItemPos(item.getId()) != -1) {
+        int posToDel = findItemPos(item.getId());
+        if (posToDel != -1) {
             result = true;
-            items.remove(findItemPos(item.getId()));
-            position--;
+            items.remove(posToDel);
+            this.position--;
         }
         return result;
     }
@@ -42,8 +43,6 @@ public class Tracker {
     }
 
     /**
-     *
-     *
      * @param key
      * @return ArrayList<Item>
      */
@@ -70,12 +69,20 @@ public class Tracker {
 
     public Item findById(String id) {
         Item result = null;
-        for (int index = 0; index < position; index++) {
+        for (Item item : items) {
+            if (id.equals(item.getId())) {
+                result = item;
+                break;
+            }
+        }
+
+
+        /*for (int index = 0; index < position; index++) {
             if (items.get(index).getId().equals(id)) {
                 result = items.get(index);
                 break;
             }
-        }
+        }*/
         return result;
     }
 
