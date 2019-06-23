@@ -4,12 +4,12 @@ class User implements Comparable {
     private String name;
     private Integer age;
 
-    public User(String name, int age) {
+    public User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -19,10 +19,13 @@ class User implements Comparable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "User{"
+                + "name='"
+                + name
+                + '\''
+                + ", age="
+                + age
+                + '}';
     }
 
     @Override

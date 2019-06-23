@@ -21,24 +21,28 @@ public class SortUser {
         list.sort(new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
-                int compare = o1.getName().length() > o2.getName().length() ? 1 : -1;
-                return compare;
+                int result = 0;
+                result = o1.getName().length() > o2.getName().length() ? 1 : -1;
+                return result;
             }
         });
         return list;
     }
 
     public List<User> sortByAllFields(List<User> list) {
-        List<User> result = new ArrayList<>();
         list.sort(new Comparator<User>() {
             @Override
             public int compare(User o1, User o2) {
-                return 0;
+                int result = o1.getName().compareTo(o2.getName());
+                if (result == 0) {
+                    result = o1.getAge().compareTo(o2.getAge());
+                }
+                return result;
             }
         });
 
 
-        return result;
+        return list;
     }
 
     public static void main(String[] args) {
