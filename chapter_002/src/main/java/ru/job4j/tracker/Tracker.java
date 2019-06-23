@@ -1,11 +1,9 @@
 package ru.job4j.tracker;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Tracker {
-    private ArrayList<Item> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
     private int position = 0;
 
     public int getPosition() {
@@ -21,30 +19,30 @@ public class Tracker {
 
     public boolean delete(Item item) {
         boolean result = false;
-        int posToDel = findItemPos(item.getId());
-        if (posToDel >= 0) {
-            position--;
+        if (findItemPos(item.getId()) != -1) {
             result = true;
-            items.remove(posToDel);
+            items.remove(findItemPos(item.getId()));
+            position--;
         }
         return result;
     }
 
     public boolean replace(String id, Item item) {
         boolean result = false;
-        int posToReplace = findItemPos(id);
-        if (posToReplace >= 0) {
-            items.add(posToReplace, item);
+        if (findItemPos(id) != -1) {
             result = true;
+            int pos = findItemPos(id);
+            items.remove(pos);
+            items.add(pos, item);
+
+
         }
+
         return result;
     }
 
-    public ArrayList<Item> findAll() {
-        ArrayList<Item> result = new ArrayList<>();
-        //result = items.subList(0, position);
-        result = items;
-        return result;
+    public List<Item> findAll() {
+        return items;
     }
 
     /**
@@ -53,32 +51,25 @@ public class Tracker {
      * @param key
      * @return ArrayList<Item>
      */
-    public ArrayList<Item> findByName(String key) {
-        int count = 0;
-        for (int i = 0; i < position; i++) {
-            if (items.get(i).getName().equals(key)) {
-                count++;
-            }
-        }
-        ArrayList<Item> result = new ArrayList<>();
-        for (int i = 0, k = 0; i < position; i++) {
-            if (items.get(i).getName().equals(key)) {
-                result.add(k, items.get(i));
-                k++;
+    public List<Item> findByName(String key) {
+        List<Item> result = new ArrayList<>();
+        for (Item item : items) {
+            if (item.getName().equals(key)) {
+                result.add(item);
             }
         }
         return result;
     }
 
     public int findItemPos(String id) {
-        int findId = -1;
-        for (int index = 0; index < position; index++) {
+        int result = -1;
+        for (int index = 0; index < items.size(); index++) {
             if (items.get(index).getId().equals(id)) {
-                findId = index;
+                result = index;
                 break;
             }
         }
-        return findId;
+        return result;
     }
 
     public Item findById(String id) {

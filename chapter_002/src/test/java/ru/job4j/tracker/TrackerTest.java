@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -72,7 +73,7 @@ public class TrackerTest {
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        ArrayList<Item> result = tracker.findAll();
+        List<Item> result = tracker.findAll();
         assertThat(result.size(), is(3));
     }
 
@@ -85,7 +86,7 @@ public class TrackerTest {
         tracker.add(first);
         tracker.add(second);
         tracker.add(third);
-        ArrayList<Item> result = tracker.findByName("test1");
+        List<Item> result = tracker.findByName("test1");
         assertThat(result.size(), is(2));
         assertThat(result.get(0).getName(), is("test1"));
         assertThat(result.get(1).getName(), is("test1"));
