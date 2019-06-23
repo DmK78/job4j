@@ -15,8 +15,10 @@ public class ListCompare implements Comparator<String> {
             int compareChar = (Character.valueOf(left.charAt(i)).compareTo(right.charAt(i)));
             if (compareChar > 0) {
                 result = 1;
+                break;
             } else if (compareChar < 0) {
                 result = -1;
+                break;
             } else {
                 equalLetters++;
             }
