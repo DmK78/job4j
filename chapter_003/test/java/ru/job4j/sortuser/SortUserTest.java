@@ -13,9 +13,9 @@ public class SortUserTest {
     public void whenSort3UsersByAge() {
         SortUser sortUser = new SortUser();
         List<User> users = new ArrayList<>();
-        users.add(new User("Ivan",34));
-        users.add(new User("Petr",30));
-        users.add(new User("Dmitry",41));
+        users.add(new User("Ivan", 34));
+        users.add(new User("Petr", 30));
+        users.add(new User("Dmitry", 41));
         Set<User> result = sortUser.sort(users);
         Set<User> expect = new LinkedHashSet<>();
         expect.add(users.get(2));
@@ -23,4 +23,45 @@ public class SortUserTest {
         expect.add(users.get(1));
         assertThat(result.toString(), is(expect.toString()));
     }
+
+    @Test
+    public void whenSortUsersByNameLength() {
+        SortUser sortUser = new SortUser();
+        List<User> users = new ArrayList<>();
+        users.add(new User("Dmitry", 41));
+        users.add(new User("Petro", 30));
+        users.add(new User("Ivan", 34));
+        users.add(new User("Petro", 30));
+        List<User> result = sortUser.sortNameLength(users);
+        List<User> expect = new ArrayList<>();
+        expect.add(new User("Ivan", 34));
+        expect.add(new User("Petro", 30));
+        expect.add(new User("Petro", 30));
+        expect.add(new User("Dmitry", 41));
+        assertThat(result.toString(), is(expect.toString()));
+    }
+
+    @Test
+    public void whenSortUsersByAllFields() {
+        SortUser sortUser = new SortUser();
+        List<User> users = new ArrayList<>();
+        users.add(new User("Dmitry", 41));
+        users.add(new User("Petro", 31));
+        users.add(new User("Anton", 32));
+        users.add(new User("Anton", 31));
+        users.add(new User("Antonio", 31));
+        users.add(new User("Ivan", 34));
+        users.add(new User("Petro", 30));
+        List<User> result = sortUser.sortByAllFields(users);
+        List<User> expect = new ArrayList<>();
+        expect.add(new User("Anton", 31));
+        expect.add(new User("Anton", 32));
+        expect.add(new User("Antonio", 31));
+        expect.add(new User("Dmitry", 41));
+        expect.add(new User("Ivan", 34));
+        expect.add(new User("Petro", 30));
+        expect.add(new User("Petro", 31));
+        assertThat(result.toString(), is(expect.toString()));
+    }
+
 }
