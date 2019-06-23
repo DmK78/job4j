@@ -29,15 +29,11 @@ public class Tracker {
 
     public boolean replace(String id, Item item) {
         boolean result = false;
-        if (findItemPos(id) != -1) {
+        int position = findItemPos(id);
+        if (position != -1) {
             result = true;
-            int pos = findItemPos(id);
-            items.remove(pos);
-            items.add(pos, item);
-
-
+            items.set(position, item);
         }
-
         return result;
     }
 
@@ -46,7 +42,7 @@ public class Tracker {
     }
 
     /**
-     * сначала проверяет, сколько нужно позиций для результирующего массива, а потом зарполняет.
+     *
      *
      * @param key
      * @return ArrayList<Item>
