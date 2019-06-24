@@ -131,7 +131,7 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Печать всех заявок --------------");
-            ArrayList<Item> items = tracker.findAll();
+            List<Item> items = tracker.findAll();
             for (Item item : items) {
                 System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
             }
@@ -177,7 +177,8 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String id = input.ask("Укажите ИД заявки для удаления");
-            if (tracker.delete(tracker.findById(id))) {
+            if (tracker.findById(id) != null) {
+                tracker.delete(tracker.findById(id));
                 System.out.println("ОК");
             } else {
                 System.out.println("Заявка с таким ИД не найдена");
@@ -218,7 +219,7 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             String name = input.ask("Введите имя заявки для поиска ");
-            ArrayList<Item> items = tracker.findByName(name);
+            List<Item> items = tracker.findByName(name);
             for (Item item : items) {
                 System.out.println(String.format("ID %-6s Name %-30s Description %-30s Time %s", item.getId(), item.getName(), item.getDesc(), item.getTime()));
             }
