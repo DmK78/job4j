@@ -17,30 +17,31 @@ public class ChessTest {
     Board board = new Board();
 
 
-    @Test (expected = ImposibleMoveException.class)
-    public void whenThrowsImpossibleMoveException(){
+    @Test(expected = ImposibleMoveException.class)
+    public void whenThrowsImpossibleMoveException() {
         board.add(new BishopBlack(Cell.C8));
-        board.move(Cell.C8,Cell.C7);
+        board.move(Cell.C8, Cell.C7);
     }
 
-    @Test (expected = FigureNotFoundException.class)
-    public void whenThrowsFigureNotFoundException(){
+    @Test(expected = FigureNotFoundException.class)
+    public void whenThrowsFigureNotFoundException() {
         board.add(new BishopBlack(Cell.C8));
-        board.move(Cell.C7,Cell.B6);
+        board.move(Cell.C7, Cell.B6);
     }
 
-    @Test (expected = OccupiedWayException.class)
-    public void whenThrowsOccupiedWayException(){
+    @Test(expected = OccupiedWayException.class)
+    public void whenThrowsOccupiedWayException() {
         board.add(new BishopBlack(Cell.C8));
         board.add(new BishopBlack(Cell.B7));
-        board.move(Cell.C8,Cell.A6);
+        board.move(Cell.C8, Cell.A6);
     }
+
     @Test
-    public void whenBishopGoes(){
+    public void whenBishopGoes() {
         board.add(new BishopBlack(Cell.C8));
-        assertTrue(board.move(Cell.C8,Cell.E6));
-        assertTrue(board.move(Cell.E6,Cell.A2));
-        assertTrue(board.move(Cell.A2,Cell.B1));
-        assertTrue(board.move(Cell.B1,Cell.C2));
+        assertTrue(board.move(Cell.C8, Cell.E6));
+        assertTrue(board.move(Cell.E6, Cell.A2));
+        assertTrue(board.move(Cell.A2, Cell.B1));
+        assertTrue(board.move(Cell.B1, Cell.C2));
     }
 }

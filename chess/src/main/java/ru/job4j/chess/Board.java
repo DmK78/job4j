@@ -8,6 +8,7 @@ public class Board {
 
     /**
      * Добавляет вигуру на доску
+     *
      * @param figure
      */
     public void add(Figure figure) {
@@ -16,6 +17,7 @@ public class Board {
 
     /**
      * осуществляет движение фигуры
+     *
      * @param source
      * @param dest
      * @return
@@ -41,12 +43,13 @@ public class Board {
 
     /**
      * проверяет, нет ли фигур на пути
+     *
      * @param steps
      * @return
      */
     public boolean wayIsClean(Cell[] steps) {
         boolean result = true;
-        for (int i=0;i<this.index;i++) {
+        for (int i = 0; i < this.index; i++) {
             for (Cell step : steps) {
                 if (step.equals(figures[i].position())) {
                     throw new OccupiedWayException("Way is occupied");

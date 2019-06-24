@@ -21,6 +21,7 @@ public class BishopBlack extends Figure {
 
     /**
      * Возвращает ячейку Cell - текущую позицию
+     *
      * @return
      */
     @Override
@@ -30,6 +31,7 @@ public class BishopBlack extends Figure {
 
     /**
      * Логика движения фигуры
+     *
      * @param source
      * @param dest
      * @return
@@ -55,6 +57,7 @@ public class BishopBlack extends Figure {
 
     /**
      * Проверяет, двигается ли фигура по диагонали
+     *
      * @param source
      * @param dest
      * @return
@@ -69,6 +72,7 @@ public class BishopBlack extends Figure {
 
     /**
      * Копирует фигуру в новую ячейку
+     *
      * @param dest
      * @return
      */

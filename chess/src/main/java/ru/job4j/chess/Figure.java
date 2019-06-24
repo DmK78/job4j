@@ -10,7 +10,7 @@ public abstract class Figure {
     }
 
 
-    public Cell position(){
+    public Cell position() {
         return this.position;
     }
 
