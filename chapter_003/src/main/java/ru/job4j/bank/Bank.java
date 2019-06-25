@@ -33,6 +33,27 @@ public class Bank {
         }
     }
 
+    /**
+     * находит аккаунт по номеру паспорта и реквизитам счета.
+     * @param passport
+     * @param requisite
+     * @return
+     */
+    public Account findAccByPassAndReq(String passport, String requisite) {
+        Account result = null;
+        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
+            if (passport.equals(entry.getKey().getPassport())) {
+                for (Account account : entry.getValue()) {
+                    if (requisite.equals(account.getRequisites())) {
+                        result = account;
+                        break;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
     public List<Account> getUserAccounts(String passport) {
         List<Account> result = new ArrayList<>();
         for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
@@ -47,29 +68,10 @@ public class Bank {
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
         boolean result = false;
-        Account accountSrc = null;
+        Account accountSrc = findAccByPassAndReq(srcPassport, srcRequisite);
         Account accountDst = null;
-        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-            if (srcPassport.equals(entry.getKey().getPassport())) {
-                for (Account account : entry.getValue()) {
-                    if (srcRequisite.equals(account.getRequisites())) {
-                        accountSrc = account;
-                        break;
-                    }
-                }
-            }
-        }
         if (accountSrc != null && accountSrc.getValue() >= amount) {
-            for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-                if (destPassport.equals(entry.getKey().getPassport())) {
-                    for (Account account : entry.getValue()) {
-                        if (dstRequisite.equals(account.getRequisites())) {
-                            accountDst = account;
-                            break;
-                        }
-                    }
-                }
-            }
+            accountDst = findAccByPassAndReq(destPassport, dstRequisite);
         }
         if (accountDst != null) {
             if (accountSrc.transfer(accountDst, amount)) {
