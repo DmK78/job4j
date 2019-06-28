@@ -21,15 +21,21 @@ public class Departments {
 
         @Override
         public String toString() {
-            return "Org{" +
-                    "deps=" + deps +
+            return "Org{"
+                    + "deps="
+                    + deps
+                    +
                     '}';
         }
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
             Org org = (Org) o;
             return Objects.equals(deps, org.deps);
         }
