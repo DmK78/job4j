@@ -35,9 +35,9 @@ public class Tracker {
         boolean result = false;
         int posToReplace = findItemPos(id);
         if (posToReplace >= 0) {
-            items.add(posToReplace, item);
+            //items.add(posToReplace, item);
             result = true;
-            items.set(position, item);
+            items.set(posToReplace, item);
         }
         return result;
     }
