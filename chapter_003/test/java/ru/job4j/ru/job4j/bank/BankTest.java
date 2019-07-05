@@ -6,8 +6,6 @@ import ru.job4j.bank.Bank;
 import ru.job4j.bank.User;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -24,7 +22,7 @@ public class BankTest {
         bank.addAccountToUser(user1.getPassport(),account1);
         List<Account> expect = new ArrayList<>();
         expect.add(account1);
-        assertThat(bank.getUserAccounts(user1.getPassport()).get(0), is(expect.get(0)));
+        assertThat(bank.findUserAccounts(user1.getPassport()).get(0), is(expect.get(0)));
     }
 
     @Test
@@ -39,7 +37,7 @@ public class BankTest {
         bank.delAccountFromUser(user1.getPassport(),account1);
         List<Account> expect = new ArrayList<>();
         expect.add(account2);
-        assertThat(bank.getUserAccounts(user1.getPassport()), is(expect));
+        assertThat(bank.findUserAccounts(user1.getPassport()), is(expect));
     }
 
     @Test
@@ -57,8 +55,8 @@ public class BankTest {
         List<Account> expect = new ArrayList<>();
         expect.add(new Account(0, "1"));
         expect.add(new Account(300, "2"));
-        assertThat(bank.getUserAccounts(user1.getPassport()).get(0), is(expect.get(0)));
-        assertThat(bank.getUserAccounts(user2.getPassport()).get(0), is(expect.get(1)));
+        assertThat(bank.findUserAccounts(user1.getPassport()).get(0), is(expect.get(0)));
+        assertThat(bank.findUserAccounts(user2.getPassport()).get(0), is(expect.get(1)));
 
     }
 }
