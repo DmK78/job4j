@@ -20,6 +20,11 @@ public class School {
         return students.stream().filter(predict).collect(Collectors.toList());
     }
 
+    /**
+     * преобразует список студентов в map, ключом является lastname
+     * @param students
+     * @return
+     */
     Map<String, Student> convertStudentsListToMap(List<Student> students) {
         TreeMap<String, Student> result = new TreeMap<>(students.stream().distinct().collect(
                 Collectors.toMap(
