@@ -1,12 +1,14 @@
 package ru.job4j.matrixtolist;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class MatrixToList {
 
 
-    public List<Integer> convertMatrisToList(List<List<Integer>> matrix) {
-        return matrix.stream().flatMap(e -> e.stream()).collect(Collectors.toList());
+    public List<Integer> convertMatrisToList(Integer[][] matrix) {
+        return Arrays.stream(matrix).flatMap(Arrays::stream).collect(Collectors.toList());
     }
 }
