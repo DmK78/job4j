@@ -1,8 +1,6 @@
 package ru.job4j.scool;
 
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,7 +24,7 @@ public class School {
      * @return
      */
     Map<String, Student> convertStudentsListToMap(List<Student> students) {
-        TreeMap<String, Student> result = new TreeMap<>(students.stream().distinct().collect(
+        Map<String, Student> result = new LinkedHashMap<>(students.stream().collect(
                 Collectors.toMap(
                         e -> e.getLastName(),
                         e -> e
