@@ -13,7 +13,7 @@ public class Bank {
         users.remove(user);
     }
 
-    public User findUserByPassport(String passport) {
+    public User findUserByPassport(String passport){
         return users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().get();
     }
 
