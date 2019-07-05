@@ -13,57 +13,25 @@ public class Bank {
         users.remove(user);
     }
 
+    public User findUserByPassport(String passport){
+        return users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().get();
+    }
+
     public void addAccountToUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(passport)) {
-                users.get(user).add(account);
-                break;
-            }
-        }
+        users.get(findUserByPassport(passport)).add(account);
     }
 
     public void delAccountFromUser(String passport, Account account) {
-        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(passport)) {
-                users.get(user).remove(account);
-                break;
-            }
-        }
+        users.get(findUserByPassport(passport)).remove(account);
     }
 
-    /**
-     * находит аккаунт по номеру паспорта и реквизитам счета.
-     * @param passport
-     * @param requisite
-     * @return
-     */
     public Account findAccByPassAndReq(String passport, String requisite) {
-        Account result = null;
-        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-            if (passport.equals(entry.getKey().getPassport())) {
-                for (Account account : entry.getValue()) {
-                    if (requisite.equals(account.getRequisites())) {
-                        result = account;
-                        break;
-                    }
-                }
-            }
-        }
-        return result;
+        return findUserAccounts(passport).stream().filter(account -> requisite.equals(account.getRequisites())).findFirst().get();
     }
 
-    public List<Account> getUserAccounts(String passport) {
-        List<Account> result = new ArrayList<>();
-        for (Map.Entry<User, List<Account>> entry : users.entrySet()) {
-            User user = entry.getKey();
-            if (user.getPassport().equals(passport)) {
-                result = entry.getValue();
-                break;
-            }
-        }
-        return result;
+    public List<Account> findUserAccounts(String passport) {
+        return users.get(users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().get());
+
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
