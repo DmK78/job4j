@@ -1,9 +1,10 @@
 package ru.job4j.scool;
 
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparator<Student> {
 
     private String firstName;
     private String lastName;
@@ -21,6 +22,11 @@ public class Student {
 
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public int compare(Student o1, Student o2) {
+        return o1.getLastName().compareTo(o2.getLastName());
     }
 
     @Override

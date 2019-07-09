@@ -20,6 +20,7 @@ public class School {
 
     /**
      * преобразует список студентов в map, ключом является lastname
+     *
      * @param students
      * @return
      */
@@ -30,17 +31,14 @@ public class School {
                         e -> e
                 )));
         return result;
-
     }
 
-    public static void main(String[] args) {
-       /* School school = new School();
-        List<Student> students = List.of(
-                new Student(100),
-                new Student(70),
-                new Student(10)
-        );
-        List<Student> result = school.collect(students, student -> student.score > 50);
-        //result.forEach(System.out::println);*/
+    List<Student> levelOf(List<Student> students, int bound) {
+        return students.stream()
+                .filter(student -> student != null)
+                .sorted((o1, o2) -> o2.getScore()-o1.getScore())
+                .takeWhile(student -> student.getScore() >= bound)
+                .collect(Collectors.toList());
     }
+
 }
