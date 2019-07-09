@@ -14,7 +14,7 @@ public class Bank {
     }
 
     public User findUserByPassport(String passport) {
-        return users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().get();
+        return users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().orElse(null);
     }
 
     public void addAccountToUser(String passport, Account account) {
@@ -26,11 +26,11 @@ public class Bank {
     }
 
     public Account findAccByPassAndReq(String passport, String requisite) {
-        return findUserAccounts(passport).stream().filter(account -> requisite.equals(account.getRequisites())).findFirst().get();
+        return findUserAccounts(passport).stream().filter(account -> requisite.equals(account.getRequisites())).findFirst().orElse(null);
     }
 
     public List<Account> findUserAccounts(String passport) {
-        return users.get(users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().get());
+        return users.get(users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().orElse(null));
 
     }
 

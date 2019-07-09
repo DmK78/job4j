@@ -15,6 +15,7 @@ public class BankTest {
         Account account = new Account(100, "111");
         bank.addUser(user);
         bank.addAccountToUser(user.getPassport(), account);
+        bank.addAccountToUser("111",account);
         Map<User, List<Account>> expect = new TreeMap<>();
         expect.put(user, List.of(account));
         assertThat(bank.findUserAccounts("12345"), is(expect.get(user)));
