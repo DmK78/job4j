@@ -70,6 +70,7 @@ public class BankTest {
         bank.addAccountToUser(user.getPassport(), account);
         bank.addAccountToUser(user.getPassport(), account1);
         Map<User, List<Account>> expect = new TreeMap<>();
+        bank.findAccByPassAndReq("22","3");
         expect.put(user, List.of(account));
         assertThat(bank.findAccByPassAndReq("12345","111"), is(expect.get(user).get(0)));
     }

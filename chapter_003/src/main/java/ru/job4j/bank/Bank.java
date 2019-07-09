@@ -18,20 +18,36 @@ public class Bank {
     }
 
     public void addAccountToUser(String passport, Account account) {
-        users.get(findUserByPassport(passport)).add(account);
+        User user = findUserByPassport(passport);
+        if (user != null) {
+            users.get(user).add(account);
+        }
     }
 
     public void delAccountFromUser(String passport, Account account) {
-        users.get(findUserByPassport(passport)).remove(account);
+        User user = findUserByPassport(passport);
+        if (user != null) {
+            users.get(user).remove(account);
+        }
     }
 
     public Account findAccByPassAndReq(String passport, String requisite) {
-        return findUserAccounts(passport).stream().filter(account -> requisite.equals(account.getRequisites())).findFirst().orElse(null);
+        List<Account> accounts = findUserAccounts(passport);
+        Account result = null;
+        if (accounts != null) {
+            result = accounts.stream().filter(account -> requisite.equals(account.getRequisites())).findFirst().orElse(null);
+        }
+        return result;
+        //return findUserAccounts(passport).stream().filter(account -> requisite.equals(account.getRequisites())).findFirst().orElse(null);
     }
 
     public List<Account> findUserAccounts(String passport) {
-        return users.get(users.keySet().stream().filter(user -> passport.equals(user.getPassport())).findFirst().orElse(null));
-
+        List<Account> result = null;
+        User user = findUserByPassport(passport);
+        if (user != null) {
+            result = users.get(user);
+        }
+        return result;
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport, String dstRequisite, double amount) {
