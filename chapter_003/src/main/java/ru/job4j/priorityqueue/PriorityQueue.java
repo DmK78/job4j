@@ -15,7 +15,7 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        ListIterator<Task> it = tasks.listIterator();
+        var it = tasks.listIterator();
         while (it.hasNext()) {
             if (it.next().getPriority() > task.getPriority()) {
                 it.previous();
@@ -29,13 +29,5 @@ public class PriorityQueue {
         return this.tasks.poll();
     }
 
-    public static void main(String[] args) {
-        PriorityQueue queue = new PriorityQueue();
-        queue.put(new Task("3", 3));
-        queue.put(new Task("2", 2));
-        queue.put(new Task("1", 1));
-
-
-    }
 }
 

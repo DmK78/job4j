@@ -7,6 +7,7 @@ package ru.job4j.phonedictionary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PhoneDictionary {
     private List<Person> persons = new ArrayList<Person>();
@@ -22,15 +23,7 @@ public class PhoneDictionary {
      * @return Список подощедщих пользователей.
      */
     public List<Person> find(String key) {
-        List<Person> result = new ArrayList<>();
-        for (Person person : persons) {
-            if (person.getSurname().contains(key)
-                    || person.getAddress().contains(key)
-                    || person.getName().contains(key)
-                    || person.getPhone().toString().contains(key)) {
-                result.add(person);
-            }
-        }
-        return result;
+        return persons.stream().filter(person -> person.getName().equals(key) | person.getSurname().equals(key)
+                | person.getAddress().equals(key) | person.getPhone().equals(key)).collect(Collectors.toList());
     }
 }
