@@ -11,10 +11,7 @@ public class UserConvertTest {
     @Test
     public void whenConvertSuccess() {
         UserConvert userConvert = new UserConvert();
-        List<User> users = new ArrayList<>();
-        users.add(new User("Ivan", "Moscow"));
-        users.add(new User("Dmitry", "Ekaterinburg"));
-        users.add(new User("Dmitry", "Ekaterinburg"));
+        List<User> users = List.of(new User("Ivan", "Moscow"), new User("Dmitry", "Ekaterinburg"), new User("Dmitry", "Ekaterinburg"));
         HashMap<Integer, User> result = userConvert.process(users);
         HashMap<Integer, User> expect = new HashMap<>() {{
             put(0, users.get(0));

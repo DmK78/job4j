@@ -36,7 +36,7 @@ public class School {
     List<Student> levelOf(List<Student> students, int bound) {
         return students.stream()
                 .filter(student -> student != null)
-                .sorted((o1, o2) -> o2.getScore()-o1.getScore())
+                .sorted((o1, o2) -> o2.getScore() - o1.getScore())
                 .takeWhile(student -> student.getScore() >= bound)
                 .collect(Collectors.toList());
     }

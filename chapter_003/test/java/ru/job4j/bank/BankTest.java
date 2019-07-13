@@ -15,9 +15,8 @@ public class BankTest {
         Account account = new Account(100, "111");
         bank.addUser(user);
         bank.addAccountToUser(user.getPassport(), account);
-        bank.addAccountToUser("111",account);
-        Map<User, List<Account>> expect = new TreeMap<>();
-        expect.put(user, List.of(account));
+        bank.addAccountToUser("111", account);
+        Map<User, List<Account>> expect = Map.of(user, List.of(account));
         assertThat(bank.findUserAccounts("12345"), is(expect.get(user)));
     }
 
@@ -26,8 +25,7 @@ public class BankTest {
         Bank bank = new Bank();
         User user = new User("Ivan", "12345");
         bank.addUser(user);
-        Map<User, List<Account>> expect = new TreeMap<>();
-        expect.put(user, new ArrayList<>());
+        Map<User, List<Account>> expect = Map.of(user, List.of());
         assertThat(bank.findUserAccounts("12345"), is(expect.get(user)));
     }
 
@@ -40,9 +38,8 @@ public class BankTest {
         bank.addUser(user);
         bank.addAccountToUser(user.getPassport(), account);
         bank.addAccountToUser(user.getPassport(), account1);
-        bank.delAccountFromUser(user.getPassport(),account);
-        Map<User, List<Account>> expect = new TreeMap<>();
-        expect.put(user, List.of(account1));
+        bank.delAccountFromUser(user.getPassport(), account);
+        Map<User, List<Account>> expect = Map.of(user, List.of(account1));
         assertThat(bank.findUserAccounts("12345"), is(expect.get(user)));
     }
 
@@ -55,8 +52,7 @@ public class BankTest {
         bank.addUser(user);
         bank.addAccountToUser(user.getPassport(), account);
         bank.addAccountToUser(user.getPassport(), account1);
-        Map<User, List<Account>> expect = new TreeMap<>();
-        expect.put(user, List.of(account,account1));
+        Map<User, List<Account>> expect = Map.of(user, List.of(account, account1));
         assertThat(bank.findUserAccounts("12345"), is(expect.get(user)));
     }
 
@@ -69,10 +65,9 @@ public class BankTest {
         bank.addUser(user);
         bank.addAccountToUser(user.getPassport(), account);
         bank.addAccountToUser(user.getPassport(), account1);
-        Map<User, List<Account>> expect = new TreeMap<>();
-        bank.findAccByPassAndReq("22","3");
-        expect.put(user, List.of(account));
-        assertThat(bank.findAccByPassAndReq("12345","111"), is(expect.get(user).get(0)));
+        Map<User, List<Account>> expect = Map.of(user,List.of(account));
+        bank.findAccByPassAndReq("22", "3");
+        assertThat(bank.findAccByPassAndReq("12345", "111"), is(expect.get(user).get(0)));
     }
 
     @Test

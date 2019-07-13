@@ -29,8 +29,8 @@ public class SchoolTest {
     @Test
     public void whenConvertStudentsListToMap() {
         Map<String, Student> result = school.convertStudentsListToMap(students);
-        TreeMap<String, Student> expect = new TreeMap<>(Map.of("Altov", students.get(3), "Denov", students.get(6), "Ivanov", students.get(0), "Jukov", students.get(2),
-                "Konyukhov", students.get(5), "Maximov", students.get(4), "Pupkin", students.get(1)));
+        Map<String, Student> expect = Map.of("Altov", students.get(3), "Denov", students.get(6), "Ivanov", students.get(0), "Jukov", students.get(2),
+                "Konyukhov", students.get(5), "Maximov", students.get(4), "Pupkin", students.get(1));
         assertThat(result, is(expect));
     }
 
@@ -59,9 +59,9 @@ public class SchoolTest {
     @Test
     public void whenStudentsScoreFromBounds() {
         List<Student> stud = new ArrayList<>(10);
-        stud.add(0,null);
-        stud.add(1,null);
-        stud.add(2,null);
+        stud.add(0, null);
+        stud.add(1, null);
+        stud.add(2, null);
         stud.add(3, new Student("Ivan", "Ivanov", 100));
         stud.add(4, new Student("Vasily", "Pupkin", 80));
         stud.add(5, new Student("Georgy", "Jukov", 70));

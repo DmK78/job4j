@@ -1,67 +1,59 @@
 package ru.job4j.sortuser;
 
+import com.sun.javafx.UnmodifiableArrayList;
+import org.junit.Before;
 import org.junit.Test;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class SortUserTest {
+
+
+    @Before
+    public void init() {
+    }
+
+    User userIvan = new User("Ivan", 34);
+    User userPetr = new User("Petr", 30);
+    User userFedor = new User("Fedor", 25);
+    User userDmitry = new User("Dmitry", 41);
+    User userPetr1 = new User("Petr", 31);
+
+
     @Test
-    public void whenSort3UsersByAge() {
+    public void whenSortUsersByAge() {
         SortUser sortUser = new SortUser();
-        List<User> users = new ArrayList<>();
-        users.add(new User("Ivan", 34));
-        users.add(new User("Petr", 30));
-        users.add(new User("Dmitry", 41));
+        List<User> users = List.of(
+                userIvan, userPetr, userDmitry);
         Set<User> result = sortUser.sort(users);
-        Set<User> expect = new LinkedHashSet<>();
-        expect.add(users.get(2));
-        expect.add(users.get(0));
-        expect.add(users.get(1));
-        assertThat(result.toString(), is(expect.toString()));
+        Set<User> expect = Set.of(userPetr, userIvan, userDmitry);
+        expect.stream().sorted(Comparator.comparing(User::getAge)).collect(Collectors.toList());
+        assertThat(result, is(expect));
     }
 
     @Test
     public void whenSortUsersByNameLength() {
         SortUser sortUser = new SortUser();
-        List<User> users = new ArrayList<>();
-        users.add(new User("Dmitry", 41));
-        users.add(new User("Petro", 30));
-        users.add(new User("Ivan", 34));
-        users.add(new User("Petro", 30));
+        List<User> users = List.of(userDmitry, userFedor, userIvan, userPetr);
         List<User> result = sortUser.sortNameLength(users);
-        List<User> expect = new ArrayList<>();
-        expect.add(new User("Ivan", 34));
-        expect.add(new User("Petro", 30));
-        expect.add(new User("Petro", 30));
-        expect.add(new User("Dmitry", 41));
+        List<User> expect = List.of(userIvan, userPetr, userFedor, userDmitry).stream()
+                .sorted((o1, o2) -> o1.getName().length() - o2.getName().length()).collect(Collectors.toList());
         assertThat(result.toString(), is(expect.toString()));
     }
 
     @Test
     public void whenSortUsersByAllFields() {
         SortUser sortUser = new SortUser();
-        List<User> users = new ArrayList<>();
-        users.add(new User("Dmitry", 41));
-        users.add(new User("Petro", 31));
-        users.add(new User("Anton", 32));
-        users.add(new User("Anton", 31));
-        users.add(new User("Antonio", 31));
-        users.add(new User("Ivan", 34));
-        users.add(new User("Petro", 30));
+        List<User> users = List.of(userDmitry, userFedor, userPetr1, userPetr, userIvan);
         List<User> result = sortUser.sortByAllFields(users);
-        List<User> expect = new ArrayList<>();
-        expect.add(new User("Anton", 31));
-        expect.add(new User("Anton", 32));
-        expect.add(new User("Antonio", 31));
-        expect.add(new User("Dmitry", 41));
-        expect.add(new User("Ivan", 34));
-        expect.add(new User("Petro", 30));
-        expect.add(new User("Petro", 31));
-        assertThat(result.toString(), is(expect.toString()));
+        List<User> expect = List.of(userFedor, userDmitry, userPetr, userIvan, userPetr1).stream()
+                .sorted(Comparator.comparing(User::getName).thenComparing(User::getAge)).collect(Collectors.toList());
+        assertThat(result, is(expect));
     }
 
 }

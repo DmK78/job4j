@@ -16,7 +16,7 @@ public class LambdaFunctionTest {
     public void whenLinearFunctionThenLinearResults() {
         LambdaFunction function = new LambdaFunction();
         List<Double> result = function.diapason(5, 8, x -> 2 * x + 1);
-        List<Double> expected = Arrays.asList(11D, 13D, 15D);
+        List<Double> expected = List.of(11D, 13D, 15D);
         assertThat(result, is(expected));
     }
 
@@ -24,7 +24,7 @@ public class LambdaFunctionTest {
     public void whenQuadraticFunctionThenQuadraticResults() {
         LambdaFunction function = new LambdaFunction();
         List<Double> result = function.diapason(5, 8, x -> Math.pow(3 + x, 2) + 2 * x + 1);
-        List<Double> expected = Arrays.asList(75D, 94D, 115D);
+        List<Double> expected = List.of(75D, 94D, 115D);
         assertThat(result, is(expected));
     }
 
@@ -32,7 +32,7 @@ public class LambdaFunctionTest {
     public void whenLogarithmicFunctionThenLogarithmicResults() {
         LambdaFunction function = new LambdaFunction();
         List<Double> result = function.diapason(5, 8, x -> Math.log(x));
-        List<Double> expected = Arrays.asList(1.6094379124341003D, 1.791759469228055D, 1.9459101490553132D);
+        List<Double> expected = List.of(1.6094379124341003D, 1.791759469228055D, 1.9459101490553132D);
         assertThat(result, is(expected));
     }
 }
