@@ -6,7 +6,7 @@ public class Bank {
     private Map<User, List<Account>> users = new TreeMap<>();
 
     public void addUser(User user) {
-        this.users.put(user, new ArrayList<>());
+        this.users.putIfAbsent(user, new ArrayList<>());
     }
 
     public void deleteUser(User user) {
