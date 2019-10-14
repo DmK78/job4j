@@ -6,4 +6,6 @@ public interface Input {
     String ask(String question);
 
     int ask(String question, ArrayList<Integer> ranges);
+
+    int askInt(String s);
 }

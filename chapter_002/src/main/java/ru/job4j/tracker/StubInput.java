@@ -53,4 +53,9 @@ public class StubInput implements Input {
         return key;
 
     }
+
+    @Override
+    public int askInt(String s) {
+        return 0;
+    }
 }

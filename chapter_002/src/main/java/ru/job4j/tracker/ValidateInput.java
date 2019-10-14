@@ -29,4 +29,21 @@ public class ValidateInput implements Input {
         } while (!isValid);
         return value;
     }
+
+    @Override
+    public int askInt(String s) {
+        boolean isValid = false;
+        int value = -1;
+        do {
+            try {
+                value = this.input.askInt(s);
+                isValid = true;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Please enter numbers...");
+            } catch (MenuOutException e) {
+                System.out.println("Please enter number of menu...");
+            }
+        } while (!isValid);
+        return value;
+    }
 }

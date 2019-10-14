@@ -28,4 +28,10 @@ public class ConsoleInput implements Input {
         }
         return key;
     }
+
+    @Override
+    public int askInt(String s) {
+        System.out.println(s);
+        return scanner.nextInt();
+    }
 }
