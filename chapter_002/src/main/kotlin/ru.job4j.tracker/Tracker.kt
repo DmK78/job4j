@@ -2,7 +2,7 @@ package ru.job4j.tracker
 
 import java.util.ArrayList
 
-class Tracker{
+class Tracker {
     private val items = ArrayList<Item>()
     private var position = 0
 
@@ -11,15 +11,15 @@ class Tracker{
     }
 
     fun add(item: Item): Item {
-        item.setId(this.generateId())
-        item.setTime(System.currentTimeMillis())
+        item.id = this.generateId()
+        item.time = System.currentTimeMillis()
         this.items.add(this.position++, item)
         return item
     }
 
     fun delete(item: Item): Boolean {
         var result = false
-        val posToDel = findItemPos(item.getId())
+        val posToDel = findItemPos(item.id)
         if (posToDel != -1) {
             result = true
             items.removeAt(posToDel)
@@ -45,7 +45,7 @@ class Tracker{
     fun findByName(key: String): List<Item> {
         val result = ArrayList<Item>()
         for (item in items) {
-            if (item.getName() == key) {
+            if (item.name == key) {
                 result.add(item)
             }
         }
@@ -55,7 +55,7 @@ class Tracker{
     fun findItemPos(id: String): Int {
         var result = -1
         for (index in items.indices) {
-            if (items[index].getId() == id) {
+            if (items[index].id == id) {
                 result = index
                 break
             }
@@ -66,7 +66,7 @@ class Tracker{
     fun findById(id: String): Item? {
         var result: Item? = null
         for (item in items) {
-            if (id == item.getId()) {
+            if (id == item.id) {
                 result = item
                 break
             }
@@ -75,16 +75,9 @@ class Tracker{
     }
 
 
-
-
-
-
-
     private fun generateId(): String {
         return (Math.random() * 1000).toInt().toString()
     }
-
-
 
 
 }

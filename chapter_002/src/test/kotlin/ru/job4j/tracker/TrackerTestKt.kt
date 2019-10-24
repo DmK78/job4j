@@ -9,9 +9,10 @@ class TrackerTestKt : StringSpec({
         val tracker = Tracker()
         val created = System.currentTimeMillis()
         val item = Item("test1", "testDescription", created)
-        tracker.add(item)
-        val result = tracker.findById(item.getId())
-        item.getName() shouldBe result?.getName()
+
+        val itemForId = tracker.add(item)
+        val result = tracker.findById(itemForId.id)
+        item.name shouldBe result?.name
     }
 
     "whenReplaceNameThenReturnNewName"{
@@ -19,9 +20,9 @@ class TrackerTestKt : StringSpec({
         val previous = Item("test1", "testDescription", 123L)
         tracker.add(previous)
         val next = Item("test2", "testDescription2", 1234L)
-        next.setId(previous.getId())
-        tracker.replace(previous.getId(), next)
-        tracker.findById(previous.getId())?.getName() shouldBe "test2"
+        next.id = previous.id
+        tracker.replace(previous.id, next)
+        tracker.findById(previous.id)?.name shouldBe "test2"
     }
     "whenDeleteItemThenReturnNewArray"{
         val tracker = Tracker()
@@ -33,8 +34,8 @@ class TrackerTestKt : StringSpec({
         tracker.add(third)
         tracker.delete(second)
         tracker.getPosition() shouldBe 2
-        tracker.findById(first.getId()) shouldBe first
-        tracker.findById(third.getId()) shouldBe third
+        tracker.findById(first.id) shouldBe first
+        tracker.findById(third.id) shouldBe third
     }
     "whenFindAllItemThenShowThree"{
         val tracker = Tracker()
