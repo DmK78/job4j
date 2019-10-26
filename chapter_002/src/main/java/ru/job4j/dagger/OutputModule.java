@@ -7,9 +7,9 @@ import dagger.Module;
 @Module
 public class OutputModule {
 
-        @Provides
-        public static Out provideOutput(){
-            return new Output();
-        }
-
+    @Provides
+    public static Out provideOutput() {
+        return new Output();
     }
+
+}

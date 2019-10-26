@@ -9,12 +9,12 @@ public class Calc {
     private final Out out;
 
     @Inject
-    public Calc(Input input, Out out)
-    {
+    public Calc(Input input, Out out) {
         this.input = input;
         this.out = out;
     }
-    public void add(){
+
+    public void add() {
         int first = input.askInt("first: ");
         int second = input.askInt("second: ");
         out.print("result " + (first + second));

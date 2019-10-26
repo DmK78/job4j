@@ -8,7 +8,7 @@ import ru.job4j.tracker.Input;
 @Module
 public class InputModule {
     @Provides
-    public static Input provideInput(){
+    public static Input provideInput() {
         return new ConsoleInput();
     }
 
